@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mega semana de oferta — EcoFashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:ital,wght@0,500;0,600;0,700;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --marrom-escuro: #6b4a3a;
+        --marrom-medio: #9c6b4f;
+        --marrom-claro: #c8956d;
+        --bege-areia: #e8dcc8;
+        --creme: #f5efe3;
+        --dourado: #c8902a;
+        --branco: #ffffff;
+        --texto: #2a1f18;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background-color: var(--creme);
+        color: var(--texto);
+        line-height: 1.5;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      .logo {
+        font-family: "Poppins", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      .header {
+        background-color: var(--marrom-escuro);
+        color: var(--creme);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(107, 74, 58, 0.25);
+      }
+
+      .header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+        font-style: italic;
+        font-weight: 700;
+        text-transform: lowercase;
+        color: var(--creme);
+      }
+
+      .logo .dot {
+        color: var(--marrom-claro);
+      }
+
+      .voltar {
+        font-size: 0.85rem;
+        color: var(--bege-areia);
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .voltar:hover {
+        color: var(--creme);
+      }
+
+      .pagina-ofertas {
+        padding: 32px 0 48px;
+      }
+
+      .pagina-ofertas h1 {
+        font-size: 2rem;
+        color: var(--marrom-escuro);
+        margin-bottom: 8px;
+      }
+
+      .pagina-ofertas h1 .destaque {
+        color: var(--dourado);
+        font-weight: 800;
+      }
+
+      .pagina-ofertas p {
+        color: #4a3828;
+        max-width: 560px;
+        margin-bottom: 28px;
+      }
+
+      .badge-promo {
+        display: inline-block;
+        background: linear-gradient(110deg, var(--marrom-escuro), var(--marrom-medio));
+        color: var(--creme);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: 999px;
+        margin-bottom: 12px;
+      }
+
+      .grade {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+      }
+
+      .card {
+        background-color: var(--branco);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 3px 10px rgba(107, 74, 58, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 18px rgba(107, 74, 58, 0.16);
+      }
+
+      .card-img {
+        aspect-ratio: 4 / 5;
+        width: 100%;
+        background-color: var(--bege-areia);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-img img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 8%;
+        display: block;
+      }
+
+      .tag-desc {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        z-index: 1;
+        background-color: var(--marrom-escuro);
+        color: #ffffff;
+        font-size: 0.75rem;
+        font-weight: 800;
+        padding: 3px 7px;
+        border-radius: 5px;
+        letter-spacing: 0.3px;
+      }
+
+      .card-body {
+        padding: 8px 9px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .card-body .nome {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--marrom-escuro);
+        line-height: 1.25;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .precos {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .preco-atual {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.92rem;
+        font-weight: 800;
+        color: var(--marrom-escuro);
+      }
+
+      .preco-velho {
+        font-size: 0.65rem;
+        color: #6a5545;
+        text-decoration: line-through;
+      }
+
+      .avaliacao {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.62rem;
+        color: #4a3828;
+      }
+
+      .estrelas {
+        color: var(--dourado);
+        letter-spacing: -1px;
+      }
+
+      .rodape {
+        background-color: var(--marrom-escuro);
+        color: var(--bege-areia);
+        padding: 24px 0;
+        text-align: center;
+        font-size: 0.76rem;
+      }
+
+      @media (max-width: 1100px) {
+        .grade {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 12px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .grade {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 11px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding: 0 14px;
+        }
+        .header .container {
+          height: 58px;
+          gap: 10px;
+        }
+        .logo {
+          font-size: 1.25rem;
+        }
+        .voltar {
+          font-size: 0.78rem;
+          white-space: nowrap;
+        }
+        .pagina-ofertas {
+          padding: 22px 0 36px;
+        }
+        .pagina-ofertas h1 {
+          font-size: 1.45rem;
+        }
+        .pagina-ofertas p {
+          font-size: 0.9rem;
+          margin-bottom: 20px;
+        }
+        .grade {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+        }
+        .card-body {
+          padding: 7px 8px 9px;
+        }
+        .card-body .nome {
+          font-size: 0.68rem;
+        }
+        .preco-atual {
+          font-size: 0.82rem;
+        }
+        .avaliacao {
+          font-size: 0.58rem;
+          flex-wrap: wrap;
+          gap: 3px;
+        }
+        .rodape {
+          padding: 18px 0;
+          font-size: 0.7rem;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .container {
+          padding: 0 10px;
+        }
+        .voltar {
+          font-size: 0.72rem;
+        }
+        .pagina-ofertas h1 {
+          font-size: 1.25rem;
+        }
+        .grade {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
+        }
+        .card-body .nome {
+          font-size: 0.65rem;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/tema.css" />
+    <link rel="stylesheet" href="/produto-detalhe.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="/" class="logo">ecofashion<span class="dot">.</span></a>
+        <a href="/" class="voltar">← Voltar à loja</a>
+      </div>
+    </header>
+
+    <main class="pagina-ofertas container">
+      <span class="badge-promo">🔥 Promoção ativa</span>
+      <h1>Mega semana de oferta com <span class="destaque">60% OFF</span></h1>
+      <p>Roupas e acessórios das melhores marcas com desconto que você só encontra aqui.</p>
+      <div class="grade" id="grade"></div>
+    </main>
+
+    <footer class="rodape">
+      <div class="container">
+        © 2026 ecofashion. — moda sustentável e acessórios.
+      </div>
+    </footer>
+
+    <script src="/catalogo.js"></script>
+    <script src="/produto-detalhe.js"></script>
+    <script>
+      function estrelasHtml(nota) {
+        const cheias = Math.floor(nota);
+        const meia = nota % 1 >= 0.5;
+        let s = "★".repeat(cheias);
+        if (meia) s += "⯨";
+        s += "☆".repeat(Math.max(0, 5 - cheias - (meia ? 1 : 0)));
+        return s;
+      }
+
+      window.estrelasHtml = estrelasHtml;
+
+      document.getElementById("grade").innerHTML = window.ECOFASHION.megaOferta()
+        .map((p) => window.ECOFASHION_DETALHE.cardHtml(p))
+        .join("");
+    </script>
+  </body>
+</html>

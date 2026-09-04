@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoFashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:ital,wght@0,500;0,600;0,700;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --marrom-escuro: #6b4a3a;
+        --marrom-medio: #9c6b4f;
+        --marrom-claro: #c8956d;
+        --bege-areia: #e8dcc8;
+        --creme: #f5efe3;
+        --dourado: #c8902a;
+        --branco: #ffffff;
+        --texto: #2a1f18;
+        --estilo-circulo: clamp(48px, 16vw, 72px);
+        --estilo-rotulo: clamp(0.62rem, 2.8vw, 0.74rem);
+        --estilo-espaco: clamp(6px, 1.8vw, 10px);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background-color: var(--creme);
+        color: var(--texto);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      .logo {
+        font-family: "Poppins", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      /* ===== Header ===== */
+      .header {
+        background-color: var(--marrom-escuro);
+        color: var(--creme);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(107, 74, 58, 0.25);
+      }
+      .header .container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        height: 68px;
+      }
+      .logo {
+        font-size: 1.6rem;
+        font-style: italic;
+        font-weight: 700;
+        text-transform: lowercase;
+        color: var(--creme);
+        white-space: nowrap;
+        letter-spacing: -0.5px;
+      }
+      .logo .dot {
+        color: var(--marrom-claro);
+      }
+      .search {
+        flex: 1;
+        max-width: 560px;
+        position: relative;
+      }
+      .search input {
+        width: 100%;
+        height: 40px;
+        border: none;
+        border-radius: 999px;
+        padding: 0 44px 0 18px;
+        font-size: 0.9rem;
+        font-family: inherit;
+        color: var(--texto);
+        background-color: var(--creme);
+        outline: none;
+        transition: box-shadow 0.2s;
+      }
+      .search input:focus {
+        box-shadow: 0 0 0 3px rgba(200, 149, 109, 0.5);
+      }
+      .search .lupa {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        font-size: 1.05rem;
+        color: var(--marrom-medio);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+      }
+      .search .lupa:hover {
+        background-color: rgba(107, 74, 58, 0.08);
+      }
+      .header-icons {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+      .header-icons a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+        font-size: 0.62rem;
+        color: var(--bege-areia);
+        transition: color 0.2s;
+      }
+      .header-icons a:hover {
+        color: var(--marrom-claro);
+      }
+      .header-icons .icon {
+        font-size: 1.25rem;
+        line-height: 1;
+      }
+      .badge {
+        background: var(--marrom-claro);
+        color: var(--marrom-escuro);
+        font-size: 0.58rem;
+        font-weight: 600;
+        border-radius: 999px;
+        padding: 0 5px;
+        margin-left: 4px;
+      }
+
+      /* ===== Banner ===== */
+      .banner {
+        padding: 30px 0;
+      }
+      .banner-inner {
+        background: linear-gradient(110deg, var(--marrom-escuro) 0%, var(--marrom-medio) 55%, var(--marrom-claro) 100%);
+        border-radius: 18px;
+        padding: 44px 40px;
+        color: var(--creme);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: relative;
+        overflow: hidden;
+      }
+      .banner-inner::after {
+        content: "✨";
+        position: absolute;
+        right: 10px;
+        bottom: -20px;
+        font-size: 9rem;
+        opacity: 0.18;
+        transform: rotate(-12deg);
+      }
+      .banner .frete {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .banner h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        line-height: 1.15;
+        max-width: 540px;
+      }
+      .banner h1 .amarelo {
+        color: #f5d27a;
+        font-weight: 800;
+      }
+      .banner .sub {
+        font-size: 0.98rem;
+        max-width: 440px;
+      }
+      .banner .btn {
+        margin-top: 10px;
+        align-self: flex-start;
+        background-color: var(--creme);
+        color: var(--marrom-escuro);
+        padding: 12px 28px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+        z-index: 1;
+      }
+      .banner .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      }
+
+      /* ===== Estilos (cards redondos) ===== */
+      .estilos {
+        padding: clamp(16px, 4vw, 24px) 0 clamp(6px, 2vw, 8px);
+      }
+      .estilos-list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(8px, 3vw, 28px);
+        align-items: start;
+        justify-items: center;
+      }
+      .estilo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--estilo-espaco);
+        width: 100%;
+        max-width: 96px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .estilo-item:hover {
+        transform: translateY(-3px);
+      }
+      .estilo-circle {
+        width: var(--estilo-circulo);
+        height: var(--estilo-circulo);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: var(--bege-areia);
+        border: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+      }
+      .estilo-circle svg {
+        width: 38%;
+        height: 38%;
+        color: var(--marrom-escuro);
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .estilo-circle svg.estilo-icon-lg {
+        width: 56%;
+        height: 56%;
+      }
+      .estilo-item:hover .estilo-circle {
+        border-color: var(--marrom-claro);
+        background-color: var(--creme);
+        box-shadow: 0 4px 14px rgba(107, 74, 58, 0.15);
+      }
+      .estilo-item span {
+        font-size: var(--estilo-rotulo);
+        font-weight: 600;
+        color: var(--marrom-escuro);
+        text-align: center;
+        line-height: 1.2;
+        width: 100%;
+      }
+
+      /* ===== Seções de produtos ===== */
+      .secao {
+        margin-bottom: 34px;
+      }
+      .secao-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .secao-head h2 {
+        font-size: 1.4rem;
+        color: var(--marrom-escuro);
+        font-weight: 600;
+      }
+      .secao-head .vermais {
+        font-size: 0.82rem;
+        color: var(--marrom-medio);
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .secao-head .vermais:hover {
+        color: var(--marrom-escuro);
+        text-decoration: underline;
+      }
+
+      /* Contador */
+      .contador {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .contador .relogio {
+        font-size: 1.1rem;
+      }
+      .contador .bloco {
+        background-color: var(--marrom-escuro);
+        color: #ffffff;
+        border-radius: 8px;
+        padding: 5px 10px;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        min-width: 42px;
+        text-align: center;
+        line-height: 1.2;
+      }
+      .contador .bloco span {
+        display: block;
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 1.1rem;
+        line-height: 1.1;
+        font-variant-numeric: tabular-nums;
+      }
+      .contador .sep {
+        color: var(--marrom-escuro);
+        font-weight: 800;
+        font-size: 1.1rem;
+      }
+      .contador .bloco small {
+        display: block;
+        font-size: 0.58rem;
+        font-weight: 700;
+        color: #f5efe3;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        margin-top: 1px;
+      }
+
+      /* Carrossel */
+      .carrossel-wrap {
+        position: relative;
+      }
+      .carrossel {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        padding: 6px 2px 10px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .carrossel::-webkit-scrollbar {
+        display: none;
+      }
+      .seta {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background-color: var(--marrom-escuro);
+        color: var(--creme);
+        font-size: 1.3rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+        box-shadow: 0 3px 10px rgba(107, 74, 58, 0.35);
+        transition: background-color 0.2s, transform 0.2s;
+        line-height: 1;
+      }
+      .seta:hover {
+        background-color: var(--marrom-medio);
+        transform: translateY(-50%) scale(1.08);
+      }
+      .seta.prev {
+        left: -8px;
+      }
+      .seta.next {
+        right: -8px;
+      }
+
+      /* Card de produto */
+      .card {
+        flex: 0 0 180px;
+        width: 180px;
+        scroll-snap-align: start;
+        background-color: var(--branco);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(107, 74, 58, 0.12);
+        transform: translateY(-3px);
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 24px rgba(107, 74, 58, 0.2);
+      }
+      .card-img {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        background-color: var(--bege-areia);
+        position: relative;
+        border-radius: 12px 12px 0 0;
+        overflow: hidden;
+      }
+      .card-img img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 12%;
+        transform: scale(1.08);
+        display: block;
+      }
+      .tag-desc {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        z-index: 1;
+        background-color: var(--marrom-escuro);
+        color: #ffffff;
+        font-size: 0.82rem;
+        font-weight: 800;
+        padding: 4px 8px;
+        border-radius: 6px;
+        letter-spacing: 0.3px;
+      }
+      .card-body {
+        padding: 10px 11px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
+      }
+      .card-body .nome {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--texto);
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.1em;
+      }
+      .precos {
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+      .preco-atual {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--marrom-escuro);
+      }
+      .preco-velho {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #6a5545;
+        text-decoration: line-through;
+      }
+      .avaliacao {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.7rem;
+        color: #4a3828;
+        margin-top: auto;
+      }
+      .estrelas {
+        color: var(--dourado);
+        letter-spacing: 1px;
+        font-size: 0.78rem;
+      }
+
+      /* ===== Rodapé ===== */
+      .rodape {
+        background-color: var(--creme);
+        border-top: 1px solid rgba(156, 107, 79, 0.25);
+        padding: 40px 0 0;
+        margin-top: 10px;
+      }
+      .rodape-cols {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        padding-bottom: 34px;
+      }
+      .rodape-cols h3 {
+        font-size: 0.92rem;
+        color: var(--marrom-escuro);
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .rodape-cols ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .rodape-cols a {
+        font-size: 0.82rem;
+        color: var(--marrom-medio);
+        transition: color 0.2s;
+      }
+      .rodape-cols a:hover {
+        color: var(--marrom-escuro);
+        text-decoration: underline;
+      }
+      .pagamentos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 4px;
+      }
+      .pagamentos span {
+        background-color: var(--bege-areia);
+        color: var(--marrom-escuro);
+        font-size: 0.66rem;
+        font-weight: 600;
+        padding: 5px 9px;
+        border-radius: 6px;
+      }
+      .social {
+        display: flex;
+        gap: 12px;
+        margin-top: 4px;
+      }
+      .social a {
+        font-size: 1.3rem;
+        color: var(--marrom-medio);
+        transition: color 0.2s, transform 0.2s;
+      }
+      .social a:hover {
+        color: var(--marrom-escuro);
+        transform: translateY(-3px);
+      }
+      .copyright {
+        border-top: 1px solid rgba(156, 107, 79, 0.2);
+        padding: 16px 0;
+        text-align: center;
+        font-size: 0.76rem;
+        color: var(--marrom-medio);
+      }
+      .copyright .logo {
+        font-size: 0.95rem;
+      }
+
+      /* ===== Responsivo ===== */
+      @media (max-width: 760px) {
+        .container {
+          padding: 0 14px;
+        }
+        .header .container {
+          flex-wrap: wrap;
+          gap: 10px;
+          height: auto;
+          padding: 10px 0;
+        }
+        .logo {
+          font-size: 1.25rem;
+          flex-shrink: 0;
+        }
+        .search {
+          order: 3;
+          flex: 1 1 100%;
+          max-width: none;
+        }
+        .search input {
+          height: 38px;
+          font-size: 16px;
+        }
+        .header-icons {
+          gap: 12px;
+          margin-left: auto;
+        }
+        .header-icons a span:last-child {
+          display: none;
+        }
+        .header-icons .icon {
+          font-size: 1.15rem;
+        }
+        .banner {
+          padding: 18px 0 22px;
+        }
+        .banner-inner {
+          padding: 26px 20px;
+          border-radius: 14px;
+        }
+        .banner h1 {
+          font-size: 1.55rem;
+          max-width: 100%;
+        }
+        .banner .sub {
+          font-size: 0.88rem;
+          max-width: 100%;
+        }
+        .banner .btn {
+          width: 100%;
+          text-align: center;
+          padding: 12px 20px;
+        }
+        .banner-inner::after {
+          font-size: 5rem;
+          right: -6px;
+          bottom: -24px;
+        }
+        .estilos {
+          padding: clamp(14px, 4vw, 18px) 0 clamp(4px, 1.5vw, 6px);
+        }
+        .secao {
+          margin-bottom: 28px;
+        }
+        .secao-head {
+          flex-wrap: wrap;
+          gap: 10px 12px;
+          align-items: flex-start;
+        }
+        .secao-head h2 {
+          font-size: 1.1rem;
+          flex: 1 1 auto;
+        }
+        .secao-head .vermais {
+          font-size: 0.78rem;
+          white-space: nowrap;
+        }
+        .contador {
+          flex-wrap: wrap;
+          gap: 4px;
+        }
+        .contador .relogio {
+          display: none;
+        }
+        .contador .bloco {
+          min-width: 34px;
+          padding: 3px 6px;
+          font-size: 0.85rem;
+        }
+        .carrossel-wrap {
+          padding: 0 4px;
+        }
+        .carrossel {
+          gap: 10px;
+          padding: 4px 28px 10px;
+          scroll-padding-left: 28px;
+        }
+        .card {
+          flex: 0 0 calc(50vw - 32px);
+          width: calc(50vw - 32px);
+          max-width: 178px;
+        }
+        .card-body {
+          padding: 9px 10px 11px;
+        }
+        .card-body .nome {
+          font-size: 0.76rem;
+        }
+        .preco-atual {
+          font-size: 0.95rem;
+        }
+        .avaliacao {
+          font-size: 0.65rem;
+          flex-wrap: wrap;
+        }
+        .seta {
+          width: 32px;
+          height: 32px;
+          font-size: 1rem;
+        }
+        .seta.prev {
+          left: 0;
+        }
+        .seta.next {
+          right: 0;
+        }
+        .rodape {
+          padding: 28px 0 0;
+        }
+        .rodape-cols {
+          grid-template-columns: 1fr 1fr;
+          gap: 22px 16px;
+        }
+        .rodape-cols > div:last-child {
+          grid-column: 1 / -1;
+        }
+        .copyright {
+          font-size: 0.7rem;
+          padding: 14px 0;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .container {
+          padding: 0 12px;
+        }
+        .banner h1 {
+          font-size: 1.35rem;
+        }
+        .banner-inner::after {
+          display: none;
+        }
+        .secao-head {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .secao-head .vermais {
+          align-self: flex-start;
+        }
+        .contador {
+          align-self: flex-start;
+        }
+        .card {
+          flex: 0 0 calc(50vw - 28px);
+          width: calc(50vw - 28px);
+        }
+        .rodape-cols {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/tema.css" />
+    <link rel="stylesheet" href="/produto-detalhe.css" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+</head>
+  <body>
+    <!-- ===== Header ===== -->
+    <header class="header">
+      <div class="container">
+        <a href="/" class="logo">ecofashion<span class="dot">.</span></a>
+        <form class="search" action="/busca.html" method="get">
+          <input type="search" name="q" placeholder="Buscar roupas, bonés, acessórios..." required />
+          <button type="submit" class="lupa" aria-label="Buscar">🔍</button>
+        </form>
+        <div class="header-icons"></div>
+      </div>
+    </header>
+
+    <!-- ===== Banner ===== -->
+    <section class="banner">
+      <div class="container">
+        <div class="banner-inner">
+          <span class="frete">🚚 Frete grátis acima de R$ 199</span>
+          <h1>Mega semana de oferta com <span class="amarelo">60% OFF</span></h1>
+          <p class="sub">Roupas e acessórios das melhores marcas com desconto que você só encontra aqui.</p>
+          <a href="/ofertas.html" class="btn">Aproveitar ofertas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Estilos ===== -->
+    <section class="estilos container">
+      <div class="estilos-list">
+        <a href="/categoria.html?estilo=casual" class="estilo-item">
+          <div class="estilo-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+            </svg>
+          </div>
+          <span>Casual</span>
+        </a>
+        <a href="/categoria.html?estilo=esportivo" class="estilo-item">
+          <div class="estilo-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14.4 14.4 9.6 9.6"/>
+              <path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/>
+              <path d="m21.5 21.5-1.4-1.4"/>
+              <path d="M3.9 3.9 2.5 2.5"/>
+              <path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/>
+            </svg>
+          </div>
+          <span>Esportivo</span>
+        </a>
+        <a href="/categoria.html?estilo=streetwear" class="estilo-item">
+          <div class="estilo-circle">
+            <svg class="estilo-icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M8.5 5.5c0-1.2 1.6-2 3.5-2s3.5.8 3.5 2"/>
+              <path d="M8.5 5.5H15"/>
+              <path d="M8.5 5.5 5.5 6.2"/>
+              <path d="M11 3.8c.8-.3 1.7-.3 2.5 0"/>
+              <path d="M9.2 10.8 12 9l2.8 1.8"/>
+              <path d="M7.8 10.8v9.2c0 .5.4.8.9.8h6.6c.5 0 .9-.3.9-.8v-9.2"/>
+              <path d="M12 9v11"/>
+              <path d="M7.8 12.2H5.8v5.8"/>
+              <path d="M16.2 12.2h2v5.8"/>
+              <path d="M5.8 18h2"/>
+              <path d="M16.2 18h2"/>
+              <path d="M7.8 20.8h8.4"/>
+              <path d="M9.5 13.2h2.2v2.2H9.5"/>
+              <path d="M12.3 13.2h2.2v2.2h-2.2"/>
+            </svg>
+          </div>
+          <span>Streetwear</span>
+        </a>
+        <a href="/categoria.html?estilo=acessorios" class="estilo-item">
+          <div class="estilo-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 10.5c0-1.4 1.1-2.5 2.5-2.5h9c1.4 0 2.5 1.1 2.5 2.5v8c0 1.4-1.1 2.5-2.5 2.5h-9C6.1 21 5 19.9 5 18.5z"/>
+              <path d="M8.5 9V6.8C8.5 4.7 10.1 3 12 3s3.5 1.7 3.5 3.8V9"/>
+              <path d="M5 13h14"/>
+            </svg>
+          </div>
+          <span>Acessórios</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== Ofertas relâmpago ===== -->
+    <section class="secao container">
+      <div class="secao-head">
+        <h2>⚡ Ofertas relâmpago</h2>
+        <div class="contador">
+          <span class="relogio">⏰</span>
+          <div class="bloco"><span id="t-horas">00</span><small>horas</small></div>
+          <span class="sep">:</span>
+          <div class="bloco"><span id="t-min">00</span><small>min</small></div>
+          <span class="sep">:</span>
+          <div class="bloco"><span id="t-seg">00</span><small>seg</small></div>
+        </div>
+      </div>
+      <div class="carrossel-wrap">
+        <button class="seta prev" data-alvo="ofertas">‹</button>
+        <div class="carrossel" id="ofertas"></div>
+        <button class="seta next" data-alvo="ofertas">›</button>
+      </div>
+    </section>
+
+    <!-- ===== Mais vendidos ===== -->
+    <section class="secao container">
+      <div class="secao-head">
+        <h2>🏆 Roupas mais vendidas</h2>
+        <a href="#" class="vermais">Ver todos →</a>
+      </div>
+      <div class="carrossel-wrap">
+        <button class="seta prev" data-alvo="vendidos">‹</button>
+        <div class="carrossel" id="vendidos"></div>
+        <button class="seta next" data-alvo="vendidos">›</button>
+      </div>
+    </section>
+
+    <!-- ===== Rodapé ===== -->
+    <footer class="rodape">
+      <div class="container">
+        <div class="rodape-cols">
+          <div>
+            <h3>Atendimento</h3>
+            <ul>
+              <li><a href="#">Central de ajuda</a></li>
+              <li><a href="#">Trocas e devoluções</a></li>
+              <li><a href="#">Rastrear pedido</a></li>
+              <li><a href="#">Prazo de entrega</a></li>
+              <li><a href="#">Fale conosco</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Sobre a ecofashion.</h3>
+            <ul>
+              <li><a href="#">Quem somos</a></li>
+              <li><a href="#">Nossas lojas</a></li>
+              <li><a href="#">Trabalhe conosco</a></li>
+              <li><a href="#">Política de privacidade</a></li>
+              <li><a href="#">Termos de uso</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Formas de pagamento</h3>
+            <div class="pagamentos">
+              <span>Visa</span>
+              <span>Mastercard</span>
+              <span>Elo</span>
+              <span>Amex</span>
+              <span>Pix</span>
+              <span>Boleto</span>
+            </div>
+          </div>
+          <div>
+            <h3>Redes sociais</h3>
+            <div class="social">
+              <a href="#" title="Instagram">📸</a>
+              <a href="#" title="Facebook">👍</a>
+              <a href="#" title="YouTube">▶️</a>
+              <a href="#" title="TikTok">🎵</a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <span class="logo">ecofashion<span class="dot">.</span></span> &nbsp;·&nbsp; © 2026 ecofashion. — moda sustentável e acessórios. Trabalho escolar, fins demonstrativos.
+        </div>
+      </div>
+    </footer>
+
+    <script src="/catalogo.js"></script>
+    <script src="/produto-detalhe.js"></script>
+    <script>
+      /* ===== Produtos ===== */
+      const ofertas = [
+        { nome: "Camisa Social Preta e Calça Alfaiataria Preta", img: "/produtos/produto-7.jpg", preco: 199.9, antigo: 289.9, desc: 31, estrelas: 4.5, vendidos: 1280 },
+        { nome: "Top Marrom Sem Mangas e Calça Off-White", img: "/produtos/produto-5.jpg", preco: 149.9, antigo: 229.9, desc: 35, estrelas: 4, vendidos: 940 },
+        { nome: "Colete Alfaiataria Off-White e Calça Bege", img: "/produtos/produto-6.jpg", preco: 179.9, antigo: 259.9, desc: 31, estrelas: 4.5, vendidos: 670 },
+        { nome: "Camisa Social Branca e Calça Preta Alfaiataria", img: "/produtos/produto-10.jpg", preco: 139.9, antigo: 199.9, desc: 30, estrelas: 4, vendidos: 1520 },
+        { nome: "Camisa Polo Preta Masculina", img: "/produtos/produto-19.jpg", preco: 129.9, antigo: 189.9, desc: 32, estrelas: 5, vendidos: 410 },
+        { nome: "Jaqueta Jeans Azul e Camiseta Branca Masculina", img: "/produtos/produto-20.jpg", preco: 159.9, antigo: 239.9, desc: 33, estrelas: 4, vendidos: 880 },
+        { nome: "Camiseta Preta Básica e Calça Branca", img: "/produtos/produto-13.jpg", preco: 189.9, antigo: 279.9, desc: 32, estrelas: 4.5, vendidos: 2100 },
+        { nome: "Camiseta Básica Preta Masculina", img: "/produtos/produto-16.jpg", preco: 119.9, antigo: 179.9, desc: 33, estrelas: 4, vendidos: 560 },
+        { nome: "Vestido Longo Off-White com Alças Finas", img: "/produtos/produto-15.jpg", preco: 169.9, antigo: 249.9, desc: 32, estrelas: 4.5, vendidos: 720 },
+        { nome: "Conjunto Alfaiataria Bege Blazer Cropped e Calça Wide", img: "/produtos/produto-14.jpg", preco: 129.9, antigo: 199.9, desc: 35, estrelas: 5, vendidos: 890 },
+      ];
+
+      const vendidos = window.ECOFASHION.todosProdutos()
+        .filter((p) => p.estilo !== "acessorios")
+        .sort((a, b) => b.vendidos - a.vendidos)
+        .slice(0, 10);
+
+      function estrelasHtml(nota) {
+        const cheias = Math.floor(nota);
+        const meia = nota % 1 >= 0.5;
+        let s = "★".repeat(cheias);
+        if (meia) s += "⯨";
+        const vazias = 5 - cheias - (meia ? 1 : 0);
+        s += "☆".repeat(Math.max(0, vazias));
+        return s;
+      }
+
+      function cardHtml(p) {
+        return window.ECOFASHION_DETALHE.cardHtml(p);
+      }
+
+      window.estrelasHtml = estrelasHtml;
+
+      document.getElementById("ofertas").innerHTML = ofertas.map(cardHtml).join("");
+      document.getElementById("vendidos").innerHTML = vendidos.map(cardHtml).join("");
+
+      /* ===== Setas do carrossel ===== */
+      document.querySelectorAll(".seta").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const alvo = document.getElementById(btn.dataset.alvo);
+          const passo = alvo.querySelector(".card").offsetWidth + 12;
+          alvo.scrollBy({ left: btn.classList.contains("next") ? passo : -passo, behavior: "smooth" });
+        });
+      });
+
+      /* ===== Contador regressivo ===== */
+      const fim = new Date();
+      fim.setHours(fim.getHours() + 8, fim.getMinutes() + 42, fim.getSeconds() + 15);
+      function tick() {
+        let diff = Math.max(0, fim - new Date());
+        const h = Math.floor(diff / 3600000);
+        diff -= h * 3600000;
+        const m = Math.floor(diff / 60000);
+        diff -= m * 60000;
+        const s = Math.floor(diff / 1000);
+        const pad = (n) => String(n).padStart(2, "0");
+        document.getElementById("t-horas").textContent = pad(h);
+        document.getElementById("t-min").textContent = pad(m);
+        document.getElementById("t-seg").textContent = pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    </script>
+  </body>
+</html>

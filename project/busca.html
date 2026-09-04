@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busca — EcoFashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:ital,wght@0,500;0,600;0,700;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --marrom-escuro: #6b4a3a;
+        --marrom-medio: #9c6b4f;
+        --marrom-claro: #c8956d;
+        --bege-areia: #e8dcc8;
+        --creme: #f5efe3;
+        --dourado: #c8902a;
+        --branco: #ffffff;
+        --texto: #2a1f18;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background-color: var(--creme);
+        color: var(--texto);
+        line-height: 1.5;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      .logo {
+        font-family: "Poppins", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      .header {
+        background-color: var(--marrom-escuro);
+        color: var(--creme);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(107, 74, 58, 0.25);
+      }
+
+      .header .container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        height: 68px;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+        font-style: italic;
+        font-weight: 700;
+        text-transform: lowercase;
+        color: var(--creme);
+        white-space: nowrap;
+      }
+
+      .logo .dot {
+        color: var(--marrom-claro);
+      }
+
+      .search {
+        flex: 1;
+        max-width: 560px;
+        position: relative;
+      }
+
+      .search input {
+        width: 100%;
+        height: 40px;
+        border: none;
+        border-radius: 999px;
+        padding: 0 44px 0 18px;
+        font-size: 0.9rem;
+        font-family: inherit;
+        color: var(--texto);
+        background-color: var(--creme);
+        outline: none;
+        transition: box-shadow 0.2s;
+      }
+
+      .search input:focus {
+        box-shadow: 0 0 0 3px rgba(200, 149, 109, 0.5);
+      }
+
+      .search .lupa {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        font-size: 1.05rem;
+        color: var(--marrom-medio);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .voltar {
+        font-size: 0.85rem;
+        color: var(--bege-areia);
+        font-weight: 500;
+        white-space: nowrap;
+        transition: color 0.2s;
+      }
+
+      .voltar:hover {
+        color: var(--creme);
+      }
+
+      .pagina-busca {
+        padding: 32px 0 48px;
+      }
+
+      .pagina-busca h1 {
+        font-size: 1.75rem;
+        color: var(--marrom-escuro);
+        margin-bottom: 8px;
+      }
+
+      .pagina-busca h1 strong {
+        color: var(--marrom-claro);
+        font-weight: 600;
+      }
+
+      .pagina-busca .info {
+        color: var(--marrom-medio);
+        margin-bottom: 28px;
+      }
+
+      .vazio {
+        background: var(--branco);
+        border-radius: 14px;
+        padding: 40px 24px;
+        text-align: center;
+        box-shadow: 0 4px 14px rgba(107, 74, 58, 0.1);
+      }
+
+      .vazio p {
+        color: var(--marrom-medio);
+        margin-bottom: 16px;
+      }
+
+      .vazio a {
+        display: inline-block;
+        background: var(--marrom-escuro);
+        color: var(--creme);
+        padding: 10px 20px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.88rem;
+      }
+
+      .grade {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+
+      .card {
+        background-color: var(--branco);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(107, 74, 58, 0.12);
+        transform: translateY(-3px);
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 24px rgba(107, 74, 58, 0.2);
+      }
+
+      .card-img {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        background-color: var(--bege-areia);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-img img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 12%;
+        transform: scale(1.08);
+        display: block;
+      }
+
+      .tag-desc {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        z-index: 1;
+        background-color: var(--marrom-escuro);
+        color: var(--creme);
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 3px 7px;
+        border-radius: 6px;
+      }
+
+      .card-body {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .card-body .nome {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--marrom-escuro);
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .precos {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .preco-atual {
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--marrom-escuro);
+      }
+
+      .preco-velho {
+        font-size: 0.72rem;
+        color: #6a5545;
+        text-decoration: line-through;
+      }
+
+      .avaliacao {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.72rem;
+        color: #4a3828;
+      }
+
+      .estrelas {
+        color: var(--dourado);
+        letter-spacing: -1px;
+      }
+
+      .rodape {
+        background-color: var(--marrom-escuro);
+        color: var(--bege-areia);
+        padding: 24px 0;
+        text-align: center;
+        font-size: 0.76rem;
+      }
+
+      @media (max-width: 900px) {
+        .grade {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .header .container {
+          flex-wrap: wrap;
+          height: auto;
+          padding: 10px 0;
+        }
+        .search {
+          order: 3;
+          flex: 1 1 100%;
+          max-width: none;
+        }
+        .search input {
+          font-size: 16px;
+        }
+        .voltar {
+          margin-left: auto;
+          font-size: 0.78rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding: 0 14px;
+        }
+        .logo {
+          font-size: 1.25rem;
+        }
+        .pagina-busca {
+          padding: 22px 0 36px;
+        }
+        .pagina-busca h1 {
+          font-size: 1.35rem;
+        }
+        .grade {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+        .card-body {
+          padding: 10px;
+        }
+        .card-body .nome {
+          font-size: 0.76rem;
+        }
+        .preco-atual {
+          font-size: 0.92rem;
+        }
+        .avaliacao {
+          font-size: 0.65rem;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/tema.css" />
+    <link rel="stylesheet" href="/produto-detalhe.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="/" class="logo">ecofashion<span class="dot">.</span></a>
+        <form class="search" action="/busca.html" method="get">
+          <input type="search" name="q" id="input-busca" placeholder="Buscar roupas, bonés, acessórios..." required />
+          <button type="submit" class="lupa" aria-label="Buscar">🔍</button>
+        </form>
+        <a href="/" class="voltar">← Voltar</a>
+      </div>
+    </header>
+
+    <main class="pagina-busca container">
+      <h1 id="titulo">Resultados</h1>
+      <p class="info" id="info"></p>
+      <div class="grade" id="grade"></div>
+      <div class="vazio" id="vazio" hidden>
+        <p>Nenhum produto encontrado para sua busca.<br />Tente outro termo, como <em>vestido</em>, <em>casual</em> ou <em>boné</em>.</p>
+        <a href="/">Ver todos os produtos</a>
+      </div>
+    </main>
+
+    <footer class="rodape">
+      <div class="container">© 2026 ecofashion. — moda sustentável e acessórios.</div>
+    </footer>
+
+    <script src="/catalogo.js"></script>
+    <script src="/produto-detalhe.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const termo = params.get("q") || "";
+      const input = document.getElementById("input-busca");
+      input.value = termo;
+
+      function estrelasHtml(nota) {
+        const cheias = Math.floor(nota);
+        const meia = nota % 1 >= 0.5;
+        let s = "★".repeat(cheias);
+        if (meia) s += "⯨";
+        s += "☆".repeat(Math.max(0, 5 - cheias - (meia ? 1 : 0)));
+        return s;
+      }
+
+      function escapeHtml(texto) {
+        return String(texto)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      window.estrelasHtml = estrelasHtml;
+
+      const resultados = window.ECOFASHION.buscar(termo);
+      const titulo = document.getElementById("titulo");
+      const info = document.getElementById("info");
+      const grade = document.getElementById("grade");
+      const vazio = document.getElementById("vazio");
+
+      if (!termo.trim()) {
+        titulo.textContent = "Busque na loja";
+        info.textContent = "Digite o nome de uma peça, estilo ou acessório.";
+        vazio.hidden = false;
+      } else {
+        document.title = `"${termo}" — EcoFashion`;
+        titulo.innerHTML = `Resultados para <strong>"${escapeHtml(termo)}"</strong>`;
+        info.textContent =
+          resultados.length === 1
+            ? "1 produto encontrado"
+            : `${resultados.length} produtos encontrados`;
+
+        if (resultados.length === 0) {
+          vazio.hidden = false;
+        } else {
+          grade.innerHTML = resultados
+            .map((p) => window.ECOFASHION_DETALHE.cardHtml(p))
+            .join("");
+        }
+      }
+    </script>
+  </body>
+</html>

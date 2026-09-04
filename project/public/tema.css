@@ -1,0 +1,118 @@
+/* Contraste e legibilidade — textos mais visíveis em todo o site */
+:root {
+  --texto: #2a1f18;
+  --texto-secundario: #4a3828;
+  --preco: #5c3d2e;
+  --preco-antigo: #6a5545;
+}
+
+body {
+  color: var(--texto);
+}
+
+.card-body .nome,
+.card .nome {
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.preco-atual,
+.produto-preco-atual {
+  color: var(--preco);
+}
+
+.preco-velho,
+.produto-preco-velho {
+  color: var(--preco-antigo);
+  opacity: 1;
+}
+
+.avaliacao {
+  color: var(--texto-secundario);
+  font-weight: 500;
+}
+
+.estrelas {
+  color: #a87218;
+}
+
+.banner .frete,
+.banner .sub,
+.pagina-ofertas > p,
+.pagina-categoria > p,
+.busca-resumo,
+.busca-vazio {
+  opacity: 1;
+  color: var(--texto-secundario);
+}
+
+.banner .sub {
+  color: var(--creme);
+}
+
+.contador .bloco span {
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.contador .bloco small {
+  opacity: 1;
+  color: #f5efe3;
+  font-weight: 700;
+}
+
+.tag-desc {
+  background-color: var(--marrom-escuro) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+#ofertas .preco-atual,
+.secao:has(#ofertas) .preco-atual {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+#ofertas .preco-velho,
+.secao:has(#ofertas) .preco-velho {
+  font-weight: 600;
+  opacity: 1;
+}
+
+.secao-head .vermais,
+.rodape-cols a,
+.copyright,
+.social a,
+.voltar,
+.busca-dica {
+  color: var(--texto-secundario);
+}
+
+.header-icons a {
+  color: var(--creme);
+  font-weight: 500;
+}
+
+.search .lupa {
+  color: var(--marrom-escuro);
+}
+
+.search input::placeholder {
+  color: var(--texto-secundario);
+  opacity: 1;
+}
+
+.produto-secao label {
+  color: var(--texto-secundario);
+}
+
+.logo .dot {
+  color: #e0b88a;
+}
+
+.badge-promo,
+.pagina-ofertas .badge-promo {
+  font-weight: 600;
+}
